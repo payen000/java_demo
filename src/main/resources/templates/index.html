@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Notes App</title>
+</head>
+<body>
+    <h1>Notes</h1>
+
+    <!-- Form for adding a new note -->
+    <form action="#" th:action="@{/addNote}" th:object="${note}" method="post">
+        <input type="text" name="title" placeholder="Note Title" required="required"/>
+        <textarea name="content" placeholder="Note Content" required="required"></textarea>
+        <button type="submit">Add Note</button>
+    </form>
+
+    <!-- List existing notes -->
+    <div>
+        <ul th:each="note : ${notes}">
+            <li th:text="${note.title} + ': ' + ${note.getContent()}">Note title and content</li>
+        </ul>
+    </div>
+</body>
+</html>
