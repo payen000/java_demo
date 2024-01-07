@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Payment App CyberSource</title>
+</head>
+<body>
+    <h1>Payment</h1>
+
+    <!-- List existing notes -->
+    <div>
+        <ul th:each="note : ${notes}">
+            <li th:text="${note.title} + ': ' + ${note.getContent()}">Note title and content</li>
+        </ul>
+    </div>
+</body>
+</html>

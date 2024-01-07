@@ -12,10 +12,19 @@ public class Note {
     private Long id;
     private String title;
     private String content;
+    private int statusCode;
 
     // Note: for JPA entities you cannot use normal constructors i.e.
     // public Note(String title, String content){...}
     // why? because; but for 'normal' objects you can.
+
+    public int getStatusCode() {
+        return statusCode;
+    }
+
+    public void setStatusCode(int statusCode) {
+        this.statusCode = statusCode;
+    }
 
     // Standard getters and setters
     public void setTitle(String title) {

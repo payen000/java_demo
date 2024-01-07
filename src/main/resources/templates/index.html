@@ -1,23 +1,69 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Notes App</title>
+    <title>Payment App CyberSource</title>
+    <link href="webjars/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/paymentForm.css}"/>
 </head>
 <body>
-    <h1>Notes</h1>
-
-    <!-- Form for adding a new note -->
-    <form action="#" th:action="@{/addNote}" th:object="${note}" method="post">
-        <input type="text" name="title" placeholder="Note Title" required="required"/>
-        <textarea name="content" placeholder="Note Content" required="required"></textarea>
-        <button type="submit">Add Note</button>
-    </form>
-
-    <!-- List existing notes -->
-    <div>
-        <ul th:each="note : ${notes}">
-            <li th:text="${note.title} + ': ' + ${note.getContent()}">Note title and content</li>
-        </ul>
+    <div class="container">
+        <form id="j_cybersource_form" action="#" th:action="@{/payment/process}" th:object="${cardInformation}" method="post">
+            <section class="customer_data">
+              <h4>Customer Data</h4>
+              <div class="form-row">
+                <div class="form-field">
+                  <label for="customerName">Name</label>
+                  <input name="customerName" type="text" required>
+                </div>
+                <div class="form-field">
+                  <label for="customerStreet">Street</label>
+                  <input name="customerStreet" type="text" required>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-field">
+                  <label for="customerZip">Zip</label>
+                  <input name="customerZip" type="number" required>
+                </div>
+                <div class="form-field">
+                  <label for="customerCountry">Country</label>
+                  <input name="customerCountry" type="text" required>
+                </div>
+              </div>
+            </section>
+            <section class="card-data">
+                <h4>Payment Data</h4>
+                <div class="credit-card">
+                  <div class="credit-card__front">
+                    <div class="credit-card__field credit-card__field--large">
+                      <input name="cardNumber" type="text" inputmode="numeric" pattern="\d*" placeholder="2222 0012 3412 3456" maxlength="19" required>
+                    </div>
+                    <div class="credit-card__field-group">
+                      <div class="credit-card__field">
+                        <input name="cardExpirationMonth" type="text" inputmode="numeric" pattern="\d*" placeholder="MM" maxlength="2" required>
+                      </div>
+                      <div class="credit-card__field">
+                        <input name="cardExpirationYear" type="text" inputmode="numeric" pattern="\d*" placeholder="YY" maxlength="2" required>
+                      </div>
+                    </div>
+                    <div class="credit-card__field credit-card__field--large">
+                      <input name="cardCode" type="text" inputmode="numeric" pattern="\d*" placeholder="123" maxlength="4" required>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            <section class="payment_buttons">
+                <div class="form-row">
+                  <button type="submit">Pay</button>
+                </div>
+            </section>
+          </form>
+        <div>
+            <ol th:each="note : ${notes}">
+                <li th:text="'Code: ' + ${note.statusCode} + ' Request: ' + ${note.content}">Note title and content</li>
+            </ol>
+        </div>
     </div>
+    <script src="webjars/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </body>
 </html>
