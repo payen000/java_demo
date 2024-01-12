@@ -7,23 +7,32 @@ public class cardInformation {
   private int cardExpirationMonth;
   private int cardExpirationYear;
   private int cardCode;
-  private String customerName;
+  private String customerFirstName;
+  private String customerLastName;
   private String customerCountry;
 
-  public String customerCountry() {
+  public String getCustomerLastName() {
+    return customerLastName;
+  }
+
+  public void setCustomerLastName(String customerLastName) {
+    this.customerLastName = customerLastName;
+  }
+
+  public String getCustomerCountry() {
     return customerCountry;
   }
 
-  public void customerCountry(String customerCountry) {
+  public void setCustomerCountry(String customerCountry) {
     this.customerCountry = customerCountry;
   }
 
-  public String getCustomerName() {
-    return customerName;
+  public String getCustomerFirstName() {
+    return customerFirstName;
   }
 
-  public void setCustomerName(String customerName) {
-    this.customerName = customerName;
+  public void setCustomerFirstName(String customerFirstName) {
+    this.customerFirstName = customerFirstName;
   }
 
   public String getCustomerStreet() {

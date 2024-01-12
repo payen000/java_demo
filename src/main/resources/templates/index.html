@@ -12,9 +12,15 @@
               <h4>Customer Data</h4>
               <div class="form-row">
                 <div class="form-field">
-                  <label for="customerName">Name</label>
-                  <input name="customerName" type="text" required>
+                  <label for="customerFirstName">First Name</label>
+                  <input name="customerFirstName" type="text" required>
                 </div>
+                <div class="form-field">
+                  <label for="customerLastName">Last Name</label>
+                  <input name="customerLastName" type="text" required>
+                </div>
+              </div>
+              <div class="form-row">
                 <div class="form-field">
                   <label for="customerStreet">Street</label>
                   <input name="customerStreet" type="text" required>
@@ -43,7 +49,7 @@
                         <input name="cardExpirationMonth" type="text" inputmode="numeric" pattern="\d*" placeholder="MM" maxlength="2" required>
                       </div>
                       <div class="credit-card__field">
-                        <input name="cardExpirationYear" type="text" inputmode="numeric" pattern="\d*" placeholder="YY" maxlength="2" required>
+                        <input name="cardExpirationYear" type="text" inputmode="numeric" pattern="\d*" placeholder="YYYY" maxlength="4" required>
                       </div>
                     </div>
                     <div class="credit-card__field credit-card__field--large">

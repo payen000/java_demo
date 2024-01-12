@@ -1,9 +1,10 @@
 package com.example.demo.controller;
 
 import com.example.demo.dto.cardInformation;
-import com.example.demo.model.CyberSourceAuthorization;
+import com.example.demo.model.CyberSourceRequestHandler;
 import com.example.demo.model.Note;
 import com.example.demo.service.NoteService;
+import org.apache.http.client.methods.CloseableHttpResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,14 +18,17 @@ public class PaymentController {
   @PostMapping("/payment/process")
   public ModelAndView addNote(cardInformation cardInformation) {
 
-    CyberSourceAuthorization apiHandler = new CyberSourceAuthorization();
+    CyberSourceRequestHandler apiHandler = new CyberSourceRequestHandler();
 
     String requestBody = apiHandler.buildPaymentRequestBody(cardInformation);
-    int statusCode = apiHandler.sendPaymentRequest(requestBody);
+    CloseableHttpResponse response = apiHandler.sendPaymentRequest(requestBody);
+
+    int statusCode = response.getStatusLine().getStatusCode();
+    String statusReason = response.getStatusLine().getReasonPhrase();
 
     Note note = new Note();
     note.setTitle("Payment Attempt");
-    note.setContent(requestBody);
+    note.setContent(statusReason);
     note.setStatusCode(statusCode);
     noteService.save(note);
 
